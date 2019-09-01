@@ -23,6 +23,7 @@ const Person = (props) => {
             <p>My race is: {personsState.race}</p>
             <button onClick={changeRaceHandler}>Change race</button>
             <p>{props.children}</p>
+            <input type="text" value={props.name} onChange={props.changed} />
         </div>
     );
 };
