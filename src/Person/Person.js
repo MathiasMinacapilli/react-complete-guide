@@ -19,7 +19,7 @@ const Person = (props) => {
 
     return (
         <div>
-            <p>I'm {props.name} and I am {props.age} years old!</p>
+            <p onClick={props.click}>I'm {props.name} and I am {props.age} years old!</p>
             <p>My race is: {personsState.race}</p>
             <button onClick={changeRaceHandler}>Change race</button>
             <p>{props.children}</p>

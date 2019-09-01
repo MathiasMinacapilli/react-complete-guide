@@ -14,13 +14,13 @@ class App extends Component {
 
   //The last word, Handler, is in order to say that this method is not going
   //to be called but it will be executed when some event happens
-  switchNameHandler = () => {
+  switchNameHandler = (newName) => {
     //console.log('Was clicked!');
     // DON'T DO THIS: this.state.persons[0].name = 'Mathias Minacapilli'
     this.setState({
       persons: [
-        { name: 'Mathias Minacapilli', age: 20 },
-        { name: 'Pepe', age: 1000 }
+        { name: newName, age: 20 },
+        { name: 'Pepe', age: 999 }
       ]
     })
   }
@@ -30,9 +30,21 @@ class App extends Component {
       <div className="App">
         <h1>Hi, I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={this.switchNameHandler}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age}>My hobbies: Racing</Person>
+        {/* method.bind allows us to send parameters to the method called method. If we
+        didn't do it that way and we only call the function like method(params), the method
+        would be executed inmediately the page loads. */}
+        <button onClick={this.switchNameHandler.bind(this, 'Mathias Minacapilli')}>Switch Name</button>
+        <Person 
+          name={this.state.persons[0].name} 
+          age={this.state.persons[0].age}
+          /* using an arrow function allow us to send the parameters just putting them
+          like calling the function but is returned by the arrow function, so it is not
+          executed inmediately the page loads. 
+          CAN BE INEFFICIENT, IN BIG APPS IS PREFERED TO USE .bind */
+          click={() => this.switchNameHandler('xMathM')} />
+        <Person 
+          name={this.state.persons[1].name} 
+          age={this.state.persons[1].age}>My hobbies: Racing</Person>
       </div>
     );
   }
