@@ -22,10 +22,11 @@ const Person = (props) => {
     return (
         <div className="Person">
             <p onClick={props.click}>I'm {props.name} and I am {props.age} years old!</p>
+            <input type="text" value={props.name} onChange={props.changed} />
             <p>My race is: {personsState.race}</p>
             <button onClick={changeRaceHandler}>Change race</button>
             <p>{props.children}</p>
-            <input type="text" value={props.name} onChange={props.changed} />
+            <button onClick={props.clickDelete}>Delete</button>
         </div>
     );
 };
