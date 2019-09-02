@@ -7,9 +7,9 @@ class App extends Component {
   //If state changes React will re-render the page in order to show the changes
   state = {
     persons: [
-      { id: 'asdf1', name: 'Mathias', age: 20 },
-      { id: 'asdf2', name: 'Pepe', age: 999 },
-      { id: 'asdf3', name: 'Roberto', age: 1 }
+      { id: 'p1', name: 'Mathias', age: 20 },
+      { id: 'p2', name: 'Pepe', age: 999 },
+      { id: 'p3', name: 'Roberto', age: 1 }
     ],
     showPersons: false
   }
@@ -87,10 +87,19 @@ class App extends Component {
       );
     }
 
+    let classes = []; 
+
+    if(this.state.persons.length <= 2) {
+      classes.push('red'); //classes = ['red']
+    }
+    if(this.state.persons.length <= 1) {
+      classes.push('bold'); //classes = ['red', 'bold']
+    }//We will get: "red bold"
+  
     return (
       <div className="App">
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(' ')}>This is really working!</p>
         {/* method.bind allows us to send parameters to the method called method. If we
         didn't do it that way and we only call the function like method(params), the method
         would be executed inmediately the page loads. */}
