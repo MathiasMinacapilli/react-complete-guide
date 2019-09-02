@@ -8,8 +8,10 @@ class App extends Component {
   state = {
     persons: [
       { name: 'Mathias', age: 20 },
-      { name: 'Pepe', age: 999 }
-    ]
+      { name: 'Pepe', age: 999 },
+      { name: 'Roberto', age: 1 }
+    ],
+    showPersons: false
   }
 
   //The last word, Handler, is in order to say that this method is not going
@@ -36,6 +38,11 @@ class App extends Component {
     })
   }
 
+  togglePersonsHandler = () => {
+    const doesShow = this.state.showPersons;
+    this.setState({showPersons: !doesShow});
+  }
+
   render() {
     const style = {
       backgroundColor: 'white',
@@ -55,18 +62,32 @@ class App extends Component {
         <button 
           style={style}
           onClick={this.switchNameHandler.bind(this, 'Mathias Minacapilli')}>Switch Name</button>
-        <Person 
-          name={this.state.persons[0].name} 
-          age={this.state.persons[0].age}
-          /* using an arrow function allow us to send the parameters just putting them
-          like calling the function but is returned by the arrow function, so it is not
-          executed inmediately the page loads. 
-          CAN BE INEFFICIENT, IN BIG APPS IS PREFERED TO USE .bind */
-          click={() => this.switchNameHandler('xMathM')} />
-        <Person 
-          name={this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          changed={this.nameChangedHandler}>My hobbies: Racing</Person>
+        <button 
+          style={style}
+          onClick={this.togglePersonsHandler}>Toggle persons</button>
+        { 
+        //if this.state.showPersons is true the code block is going to be shown
+        this.state.showPersons ? 
+          <div>
+            <Person 
+              name={this.state.persons[0].name} 
+              age={this.state.persons[0].age}
+              /* using an arrow function allow us to send the parameters just putting them
+              like calling the function but is returned by the arrow function, so it is not
+              executed inmediately the page loads. 
+              CAN BE INEFFICIENT, IN BIG APPS IS PREFERED TO USE .bind */
+              click={() => this.switchNameHandler('xMathM')} />
+            <Person 
+              name={this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              changed={this.nameChangedHandler}>My hobbies: Racing</Person>
+            <Person 
+              name={this.state.persons[2].name} 
+              age={this.state.persons[2].age}></Person>
+          </div> 
+        //if this.state.showPersons is false then show nothing (null)
+        : null 
+        }
       </div>
     );
   }
