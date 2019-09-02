@@ -11,15 +11,33 @@ import Cockpit from './components/Cockpit/Cockpit';
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
-  //state can be only managed inside a class that extends Component
-  //If state changes React will re-render the page in order to show the changes
-  state = {
-    persons: [
-      { id: 'p1', name: 'Mathias', age: 20 },
-      { id: 'p2', name: 'Pepe', age: 999 },
-      { id: 'p3', name: 'Roberto', age: 1 }
-    ],
-    showPersons: false
+
+  /* Constructor */
+  constructor(props) {
+    console.log('[App.js] Constructor');
+    // Calls the constructor of Component
+    super(props); 
+
+    // Inititalizate state
+    //state can be only managed inside a class that extends Component
+    //If state changes React will re-render the page in order to show the changes
+    this.state = {
+      persons: [
+        { id: 'p1', name: 'Mathias', age: 20 },
+        { id: 'p2', name: 'Pepe', age: 999 },
+        { id: 'p3', name: 'Roberto', age: 1 }
+      ],
+      showPersons: false
+    }
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps');
+    return state;
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
   }
 
   //The last word, Handler, is in order to say that this method is not going
@@ -70,6 +88,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('[App.js] render');
 
     let persons = null;
 
