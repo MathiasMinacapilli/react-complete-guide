@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Radium from 'radium';
 
 import './Person.css';
 
@@ -31,4 +32,5 @@ const Person = (props) => {
     );
 };
 
+//If I put Radium(Person) I get an error
 export default Person;

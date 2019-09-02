@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -67,7 +68,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     }
 
     let persons = null;
@@ -104,6 +109,7 @@ class App extends Component {
         didn't do it that way and we only call the function like method(params), the method
         would be executed inmediately the page loads. */}
         <button 
+          key="switch-name-btn"
           style={style}
           onClick={this.switchNameHandler.bind(this, 'Mathias Minacapilli')}>Switch Name</button>
         <button 
@@ -115,4 +121,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
