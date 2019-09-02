@@ -27,15 +27,26 @@ class App extends Component {
     })
   }
 
-  nameChangedHandler = (event) => {
+  nameChangedHandler = (event, id) => {
     //console.log('Was clicked!');
+
+    //The function in .find method is going to be executed for each object in the persons array
+    const personIndex = this.state.persons.findIndex(person => {
+      return person.id === id;
+    });
+
+    const person = {
+      ...this.state.persons[personIndex] //using the spread operator is going to copy
+    };
+    //Alternative: const person = Object.assign({}, this.state.persons[personIndex]);
+
+    person.name = event.target.value;
+
+    const persons = [...this.state.persons];
+    persons[personIndex] = person;
+
     // DON'T DO THIS: this.state.persons[0].name = 'Mathias Minacapilli'
-    this.setState({
-      persons: [
-        { name: 'Mathias', age: 20 },
-        { name: event.target.value, age: 999 }
-      ]
-    })
+    this.setState({ persons: persons });
   }
 
   deletePersonHandler = (personIndex) => {
@@ -69,7 +80,8 @@ class App extends Component {
               key={person.id}
               clickDelete={() => this.deletePersonHandler(index)}
               name={person.name} 
-              age={person.age} />
+              age={person.age}
+              changed={(event) => this.nameChangedHandler(event, person.id)} />
           })}
         </div>
       );
