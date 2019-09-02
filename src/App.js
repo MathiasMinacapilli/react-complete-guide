@@ -7,9 +7,9 @@ class App extends Component {
   //If state changes React will re-render the page in order to show the changes
   state = {
     persons: [
-      { name: 'Mathias', age: 20 },
-      { name: 'Pepe', age: 999 },
-      { name: 'Roberto', age: 1 }
+      { id: 'asdf1', name: 'Mathias', age: 20 },
+      { id: 'asdf2', name: 'Pepe', age: 999 },
+      { id: 'asdf3', name: 'Roberto', age: 1 }
     ],
     showPersons: false
   }
@@ -66,6 +66,7 @@ class App extends Component {
         <div>
           {this.state.persons.map((person, index) => {
             return <Person 
+              key={person.id}
               clickDelete={() => this.deletePersonHandler(index)}
               name={person.name} 
               age={person.age} />
