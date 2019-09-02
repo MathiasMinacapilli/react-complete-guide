@@ -66,13 +66,6 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer'
-    }
 
     let persons = null;
 
@@ -109,10 +102,8 @@ class App extends Component {
         would be executed inmediately the page loads. */}
         <button 
           key="switch-name-btn"
-          style={style}
           onClick={this.switchNameHandler.bind(this, 'Mathias Minacapilli')}>Switch Name</button>
         <button 
-          style={style}
           onClick={this.togglePersonsHandler}>Toggle persons</button>
         {persons}
       </div>
