@@ -6,6 +6,9 @@ import classes from './App.css'; // This can be done becouse of the change in th
 //Components
 import Person from './Person/Person';
 
+// Errors
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+
 class App extends Component {
   //state can be only managed inside a class that extends Component
   //If state changes React will re-render the page in order to show the changes
@@ -73,12 +76,13 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person 
-              key={person.id}
+            return <ErrorBoundary key={person.id}>
+              <Person 
               clickDelete={() => this.deletePersonHandler(index)}
               name={person.name} 
               age={person.age}
               changed={(event) => this.nameChangedHandler(event, person.id)} />
+            </ErrorBoundary>
           })}
         </div>
       );
