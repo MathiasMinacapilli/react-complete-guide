@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Radium from 'radium';
 
 import './Person.css';
 
@@ -17,7 +16,7 @@ const Person = (props) => {
     const changeRaceHandler = () => {
         setPersonsState({
             race: 'orc'
-        })
+        });
     };
 
     return (
