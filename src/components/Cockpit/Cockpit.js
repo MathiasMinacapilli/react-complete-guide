@@ -16,7 +16,7 @@ const cockpit = (props) => {
   
     return (
         <div className={classes.Cockpit}>
-            <h1>Hi, I'm a React App</h1>
+            <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>This is really working!</p>
             {/* method.bind allows us to send parameters to the method called method. If we
             didn't do it that way and we only call the function like method(params), the method
