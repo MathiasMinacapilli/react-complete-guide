@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './Person.css';
+import classes from './Person.css';
 
 /* props is an object that has the properties of the component */
 /* props.children refers to the plain text between the opening and closing tag of our
@@ -20,7 +20,7 @@ const Person = (props) => {
     };
 
     return (
-        <div className="Person">
+        <div className={classes.Person}>
             <p onClick={props.click}>I'm {props.name} and I am {props.age} years old!</p>
             <input type="text" value={props.name} onChange={props.changed} />
             <p>My race is: {personsState.race}</p>
