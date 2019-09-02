@@ -5,6 +5,7 @@ import classes from './App.css'; // This can be done becouse of the change in th
 
 //Components
 import Persons from './components/Persons/Persons';
+import Cockpit from './components/Cockpit/Cockpit';
 
 // Errors
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
@@ -83,27 +84,11 @@ class App extends Component {
       );
     }
 
-    const assignedClasses = []; 
-
-    if(this.state.persons.length <= 2) {
-      assignedClasses.push( classes.red ); //classes = ['red']
-    }
-    if(this.state.persons.length <= 1) {
-      assignedClasses.push( classes.bold ); //classes = ['red', 'bold']
-    }//We will get: "red bold"
-  
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(' ')}>This is really working!</p>
-        {/* method.bind allows us to send parameters to the method called method. If we
-        didn't do it that way and we only call the function like method(params), the method
-        would be executed inmediately the page loads. */}
-        <button 
-          key="switch-name-btn"
-          onClick={this.switchNameHandler.bind(this, 'Mathias Minacapilli')}>Switch Name</button>
-        <button 
-          onClick={this.togglePersonsHandler}>Toggle persons</button>
+        <Cockpit 
+          persons={this.state.persons}
+          togglePersons={this.togglePersonsHandler} />
         {persons}
       </div>
     );
