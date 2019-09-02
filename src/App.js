@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import classes from './App.css'; // This can be done becouse of the change in the config at webpack
 
 //Components
-import Person from './Person/Person';
+import Person from './components/Persons/Person/Person';
 
 // Errors
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
