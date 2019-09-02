@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import classes from './App.css'; // This can be done becouse of the change in the config at webpack
 
 //Components
-import Person from './components/Persons/Person/Person';
+import Persons from './components/Persons/Persons';
 
 // Errors
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
@@ -75,15 +75,10 @@ class App extends Component {
     if(this.state.showPersons) {
       persons = (
         <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}>
-              <Person 
-              clickDelete={() => this.deletePersonHandler(index)}
-              name={person.name} 
-              age={person.age}
-              changed={(event) => this.nameChangedHandler(event, person.id)} />
-            </ErrorBoundary>
-          })}
+          <Persons 
+            persons={this.state.persons} 
+            deleteClicked={this.deletePersonHandler}
+            nameChanged={this.nameChangedHandler} />
         </div>
       );
     }
