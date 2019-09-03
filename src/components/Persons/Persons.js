@@ -6,6 +6,10 @@ import Person from './Person/Person';
 // Errors
 import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 
+/* If when we execute shouldComponentUpdate we want to compare all the
+props of the Component we should extends another Ract Component that is
+the 'PureComponent', this Component has implemented the method shouldComponentUpdate
+and it compares all the nextProps with the actual props. */
 class Persons extends Component {
 
     /* static getDerivedStateFromProps(props, state) {
@@ -13,7 +17,7 @@ class Persons extends Component {
         return state;
     } */
 
-    shouldComponentUpdate(nextProps, nextStae) {
+    shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate');
         // Optimizations in order that the Component does not always
         // updates hisself. Indeed it updates only when the persons array changes.
