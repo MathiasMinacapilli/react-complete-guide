@@ -14,6 +14,9 @@ import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Aux from './hoc/Auxilliary';
 import withClass from './hoc/withClass';
 
+// Context
+import AuthContext from './context/auth-context';
+
 class App extends Component {
 
   /* Constructor */
@@ -31,7 +34,8 @@ class App extends Component {
         { id: 'p2', name: 'Pepe', age: 999 },
         { id: 'p3', name: 'Roberto', age: 1 }
       ],
-      showPersons: false
+      showPersons: false,
+      isAuthenticated: false,
     }
   }
 
@@ -52,6 +56,11 @@ class App extends Component {
 
   componentDidUpdate() {
     console.log('[App.js] componentDidUpdate');
+  }
+
+  loginHandler = () => {
+    console.log('[App.js] loginHandler');
+    this.setState({isAuthenticated: true});
   }
 
   //The last word, Handler, is in order to say that this method is not going
@@ -124,11 +133,18 @@ class App extends Component {
 
     return (
       <Aux>
-        <Cockpit 
-          title={this.props.appTitle}
-          personsLength={this.state.persons.length}
-          togglePersons={this.togglePersonsHandler} />
-        {persons}
+        <AuthContext.Provider 
+          value={{
+            isAuthenticated: this.state.isAuthenticated, 
+            login: this.loginHandler}}>
+          <Cockpit 
+            isAuthenticated={this.isAuthenticated}
+            authenticate={this.authenticate}
+            title={this.props.appTitle}
+            personsLength={this.state.persons.length}
+            togglePersons={this.togglePersonsHandler} />
+          {persons}
+        </AuthContext.Provider>
       </Aux>
     );
   }

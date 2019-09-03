@@ -1,0 +1,1 @@
+A context Component should wrap all the Components that needs access to that context.
