@@ -10,6 +10,10 @@ import Cockpit from './components/Cockpit/Cockpit';
 // Errors
 import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
+// HOC
+import Aux from './hoc/Auxilliary';
+import withClass from './hoc/withClass';
+
 class App extends Component {
 
   /* Constructor */
@@ -114,15 +118,15 @@ class App extends Component {
     }
 
     return (
-      <div className={classes.App}>
+      <Aux>
         <Cockpit 
           title={this.props.appTitle}
           personsLength={this.state.persons.length}
           togglePersons={this.togglePersonsHandler} />
         {persons}
-      </div>
+      </Aux>
     );
   }
 }
 
-export default App;
+export default withClass(App, classes.App);
