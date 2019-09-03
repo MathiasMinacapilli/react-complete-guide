@@ -97,8 +97,13 @@ class App extends Component {
   }
 
   togglePersonsHandler = () => {
-    const doesShow = this.state.showPersons;
-    this.setState({showPersons: !doesShow});
+    // Calling setState this way we are sure that we are taking the previous
+    // state.
+    this.setState((prevState, props) => {
+      return {
+        showPersons: !prevState.showPersons
+      };
+    });
   }
 
   render() {
