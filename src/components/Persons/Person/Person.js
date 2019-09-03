@@ -11,6 +11,17 @@ import Aux from '../../../hoc/Auxilliary';
 /* props.children refers to the plain text between the opening and closing tag of our
 component */
 class Person extends Component {
+
+    constructor(props) {
+        super(props);
+        this.inputElementRef = React.createRef();
+    }
+
+    componentDidMount() {
+        //this.inputElement.focus();
+        this.inputElementRef.current.focus();
+    }
+
     render() {
         //personsState gives access to the actual state object
         //setPersonsState is a function that allows us to update the actual state
@@ -31,7 +42,15 @@ class Person extends Component {
         return (
             <div className={classes.Person}>
                 <p onClick={this.props.click}>I'm {this.props.name} and I am {this.props.age} years old!</p>
-                <input type="text" value={this.props.name} onChange={this.props.changed} />
+                <input 
+                    // ref={(inputElement) => {this.inputElement = inputElement}}
+                    // ref is used in order to reference an object, a tag, in the DOM.
+                    // when doing this.inputElementRef we assign the actual input tag to the
+                    // attribute inputElementRef
+                    ref={this.inputElementRef}
+                    type="text" 
+                    value={this.props.name} 
+                    onChange={this.props.changed} />
                 
                 <p>{this.props.children}</p>
                 <button onClick={this.props.clickDelete}>Delete</button>
@@ -40,6 +59,7 @@ class Person extends Component {
     }
 };
 
+// Definition of types of the props of the Component
 Person.propTypes = {
     click: PropTypes.func,
     name: PropTypes.string,
