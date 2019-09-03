@@ -15,7 +15,13 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextStae) {
         console.log('[Persons.js] shouldComponentUpdate');
-        return true; 
+        // Optimizations in order that the Component does not always
+        // updates hisself. Indeed it updates only when the persons array changes.
+        if(nextProps.persons !== this.props.persons) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
