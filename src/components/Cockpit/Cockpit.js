@@ -8,6 +8,11 @@ const Cockpit = (props) => {
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         alert('Welcome!');
+        // If we return a function here this will be executed after the component is removed
+        // and the component it depends get unmounted (the last parameter sent)
+        return () => {
+            console.log('[Cockpit.js] clean up work in useEffect');
+        }
     }, []); // If we give the function an empty array it will execute the first time the page loads
 
     /* useEffect takes a function that runs every render cycle */
