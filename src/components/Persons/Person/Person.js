@@ -1,6 +1,10 @@
 import React, { Component, useState } from 'react';
 
+// Styles
 import classes from './Person.css';
+
+// Auxiliary
+import Aux from '../../../hoc/Auxilliary';
 
 /* props is an object that has the properties of the component */
 /* props.children refers to the plain text between the opening and closing tag of our
