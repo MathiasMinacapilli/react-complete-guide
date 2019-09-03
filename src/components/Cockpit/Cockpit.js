@@ -1,13 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 // Styles
 import classes from './Cockpit.css';
 
 const Cockpit = (props) => {
     
+    const toggleBtnRef = useRef(null);
+
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
         alert('Welcome!');
+        toggleBtnRef.current.click(); // Shows the persons when the page loads for the first time
         // If we return a function here this will be executed after the component is removed
         // and the component it depends get unmounted (the last parameter sent)
         return () => {
@@ -41,7 +44,9 @@ const Cockpit = (props) => {
             {/* method.bind allows us to send parameters to the method called method. If we
             didn't do it that way and we only call the function like method(params), the method
             would be executed inmediately the page loads. */}
-            <button onClick={props.togglePersons}>Toggle persons</button>
+            <button 
+                ref={toggleBtnRef}
+                onClick={props.togglePersons}>Toggle persons</button>
         </div>
     )
 }
