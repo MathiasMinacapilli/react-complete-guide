@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import PropTypes from 'prop-types';
 
 // Styles
 import classes from './Person.css';
@@ -37,6 +38,14 @@ class Person extends Component {
             </div>
         );
     }
+};
+
+Person.propTypes = {
+    click: PropTypes.func,
+    name: PropTypes.string,
+    age: PropTypes.number,
+    changed: PropTypes.func,
+    clickDelete: PropTypes.func
 };
 
 //If I put Radium(Person) I get an error
