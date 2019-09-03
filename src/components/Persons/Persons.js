@@ -8,10 +8,10 @@ import ErrorBoundary from '../../ErrorBoundary/ErrorBoundary'
 
 class Persons extends Component {
 
-    static getDerivedStateFromProps(props, state) {
+    /* static getDerivedStateFromProps(props, state) {
         console.log('[Persons.js] getDerivedStateFromProps');
         return state;
-    }
+    } */
 
     shouldComponentUpdate(nextProps, nextStae) {
         console.log('[Persons.js] shouldComponentUpdate');

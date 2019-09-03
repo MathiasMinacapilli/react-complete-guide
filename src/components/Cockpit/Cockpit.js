@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 // Styles
 import classes from './Cockpit.css';
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
     
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect');
+        alert('Welcome!');
+    }, []); // If we give the function an empty array it will execute the first time the page loads
+
+    /* useEffect takes a function that runs every render cycle */
+    useEffect(() => {
+        console.log('[Cockpit.js] useEffect');
+        //HTTP request...
+        setTimeout(() => {
+            alert('Saved data to the cloud');
+        }, 1000);
+    }, [props.persons]); // Here you define which data will be watching useEffect in order
+    // to execute if that data has changes
+
     const assignedClasses = []; 
 
     if(props.persons.length <= 2) {
@@ -26,4 +41,4 @@ const cockpit = (props) => {
     )
 }
 
-export default cockpit;
+export default Cockpit;
