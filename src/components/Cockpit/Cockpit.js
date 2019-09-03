@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 
 // Styles
 import classes from './Cockpit.css';
@@ -9,6 +9,7 @@ import AuthContext from '../../context/auth-context';
 const Cockpit = (props) => {
     
     const toggleBtnRef = useRef(null);
+    const authContext = useContext(AuthContext);
 
     useEffect(() => {
         console.log('[Cockpit.js] useEffect');
@@ -46,22 +47,18 @@ const Cockpit = (props) => {
       assignedClasses.push( classes.bold ); //classes = ['red', 'bold']
     }//We will get: "red bold"
   
-    return (<AuthContext.Consumer>
-        {(context) => (
-            <div className={classes.Cockpit}>
-                <h1>{props.title}</h1>
-                <p className={assignedClasses.join(' ')}>This is really working!</p>
-                {/* method.bind allows us to send parameters to the method called method. If we
-                didn't do it that way and we only call the function like method(params), the method
-                would be executed inmediately the page loads. */}
-                <button 
-                    ref={toggleBtnRef}
-                    onClick={props.togglePersons}>Toggle persons</button>
-                <button onClick={context.login}>Log in</button>
-                { context.isAuthenticated ? <p>You're authenticated!</p> : <p>Must log in</p> }
-            </div>
-        )}
-    </AuthContext.Consumer>)
+    return <div className={classes.Cockpit}>
+        <h1>{props.title}</h1>
+        <p className={assignedClasses.join(' ')}>This is really working!</p>
+        {/* method.bind allows us to send parameters to the method called method. If we
+        didn't do it that way and we only call the function like method(params), the method
+        would be executed inmediately the page loads. */}
+        <button 
+            ref={toggleBtnRef}
+            onClick={props.togglePersons}>Toggle persons</button>
+        <button onClick={authContext.login}>Log in</button>
+        { authContext.isAuthenticated ? <p>You're authenticated!</p> : <p>Must log in</p> }
+    </div>
 }
 
 // React.memo stores a snapshot of the component and if it's inputs changes
