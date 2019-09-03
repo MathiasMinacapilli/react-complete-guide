@@ -40,6 +40,16 @@ class App extends Component {
     console.log('[App.js] componentDidMount');
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[App.js] shouldComponentUpdate');
+    //return false; //If returning false the update will not be executed
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate');
+  }
+
   //The last word, Handler, is in order to say that this method is not going
   //to be called but it will be executed when some event happens
   switchNameHandler = (newName) => {
